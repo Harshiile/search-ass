@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/controllers/csvtojson.ts","./src/controllers/index/delete.ts","./src/controllers/index/feed.ts","./src/controllers/index/fetch.ts","./src/routers/index.ts"],"version":"5.8.3"}
