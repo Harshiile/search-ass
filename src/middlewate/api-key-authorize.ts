@@ -16,6 +16,6 @@ export const apiKeyAuthorizeMiddleware = async (
     req.userId = userId;
     next();
   } catch (error) {
-    throw new CustomError(400, "Authorization Failed");
+    throw new CustomError(403, "Unauthorized User");
   }
 };
