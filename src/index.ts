@@ -4,6 +4,13 @@ import { router } from "./routers";
 import { CustomError } from "./types/error";
 
 const app = express();
+declare global {
+  namespace Express {
+    interface Request {
+      userId: string;
+    }
+  }
+}
 dotenv.config();
 const PORT = process.env.PORT;
 

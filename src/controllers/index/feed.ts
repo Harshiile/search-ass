@@ -3,6 +3,7 @@ import csv from "csvtojson";
 import axios from "axios";
 import { CustomError } from "../../types/error";
 
+// If same id occurs, it overwrites
 export const createIndexAndFeed = async (req: Request, res: Response) => {
   const { indexName } = req.query;
 
@@ -26,6 +27,8 @@ export const createIndexAndFeed = async (req: Request, res: Response) => {
     .catch((err) => {
       throw new CustomError(404, "Failed to feed data");
     });
+
+  // Insert on DB
 
   res.status(200).json({
     message: "Data Feeded Sucessfully",

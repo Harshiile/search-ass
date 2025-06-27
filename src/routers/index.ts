@@ -1,15 +1,23 @@
 import { Router } from "express";
 import multer from "multer";
-import { convertToJSON } from "../controllers/csvtojson";
-import { createIndexAndFeed } from "../controllers/index/feed";
-import { searchDocumentIndex } from "../controllers/index/fetch";
-import { deleteIndex } from "../controllers/index/delete";
-
+import {
+  createIndexAndFeed,
+  deleteIndex,
+  searchDocumentIndex,
+} from "../controllers/index";
+import { generationApiKey } from "../controllers/api-keys";
+import { apiKeyAuthorizeMiddleware } from "../middlewate/api-key-authorize";
 export const router = Router();
 
 const upload = multer({ dest: "uploads/" });
 
-router.post("/index/feed", upload.single("csv-file"), createIndexAndFeed);
-router.post("/index/search", searchDocumentIndex);
-router.delete("/index/delete", deleteIndex);
-router.post("/convert", upload.single("csv-file"), convertToJSON);
+router.get("/api-key", generationApiKey);
+
+router.post(
+  "/indexes/feed",
+  apiKeyAuthorizeMiddleware,
+  upload.single("csv-file"),
+  createIndexAndFeed
+);
+router.post("/indexes/search", apiKeyAuthorizeMiddleware, searchDocumentIndex);
+router.delete("/indexes/delete", apiKeyAuthorizeMiddleware, deleteIndex);

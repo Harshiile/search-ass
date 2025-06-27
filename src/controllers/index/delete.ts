@@ -16,5 +16,7 @@ export const deleteIndex = async (req: Request, res: Response) => {
       throw new CustomError(400, "Failed to search item");
     });
 
+  // Delete on DB
+
   res.status(200).json({ message: "Index Deleted" });
 };
