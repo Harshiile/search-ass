@@ -1,7 +1,6 @@
 .env
 node_modules
 dist
-package.json
 uploads/
 yarn.lock
 
